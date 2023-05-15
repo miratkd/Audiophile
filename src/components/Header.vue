@@ -14,7 +14,7 @@
                     <RouterLink to="fones" class="subtitle header-menu-element">fones</RouterLink>
                 </div>
 
-                <!-- Monile -->
+                <!-- Mobile -->
                 <div class="mobile header-left-container">
                     <span v-on:click="showMobileBody = !showMobileBody" class="material-icons-outlined header-icon">menu</span>
                     <RouterLink to="/" >
@@ -24,7 +24,7 @@
                 </div>
 
 
-                <span class="material-icons-outlined header-icon">shopping_cart</span>
+                <span v-on:click="openCart()" class="material-icons-outlined header-icon">shopping_cart</span>
             </div>
         </div>
         <div v-if="showMobileBody" v-on:click="showMobileBody = false" style="position: relative;">
@@ -63,15 +63,37 @@
                 </div>
             </div>
         </div>
+
+
+        <!-- Modal -->
+        <div v-if="showCart" style="position: relative;">
+            <Cart :close="hideCart"/>
+        </div>
+        
     </div>
 </template>
 
 <script>
+import Cart from './Cart.vue';
 export default {
     name: 'HeaderComponent',
     data () {
         return {
-            showMobileBody: false
+            showMobileBody: false,
+            showCart: false
+        }
+    },
+    components : {
+        Cart
+    },
+    methods: {
+        openCart () {
+            this.showCart = true;
+            document.body.style.overflow = 'hidden'
+        },
+        hideCart () {
+            this.showCart = false;
+            document.body.style.overflow = 'auto'
         }
     }
 }
