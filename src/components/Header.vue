@@ -3,18 +3,24 @@
         <div class="header-container" role="heading">
             <div class="header-line">
                 <!-- Desktop -->
-                <img class="header-logo desktop" src="@/assets/logo.svg" alt="">
+                <RouterLink to="/" class="desktop" >
+                    <img class="header-logo " src="@/assets/logo.svg" alt="">
+                </RouterLink>
+                
                 <div class="header-menu desktop">
-                    <p class="subtitle header-menu-element">Home</p>
-                    <p class="subtitle header-menu-element">HEADPHONES</p>
-                    <p class="subtitle header-menu-element">SPEAKERS</p>
-                    <p class="subtitle header-menu-element">fones</p>
+                    <RouterLink to="/" class="subtitle header-menu-element">Home</RouterLink>
+                    <RouterLink to="headphone" class="subtitle header-menu-element">HEADPHONES</RouterLink>
+                    <RouterLink to="speakers" class="subtitle header-menu-element">SPEAKERS</RouterLink>
+                    <RouterLink to="fones" class="subtitle header-menu-element">fones</RouterLink>
                 </div>
 
                 <!-- Monile -->
                 <div class="mobile header-left-container">
                     <span v-on:click="showMobileBody = !showMobileBody" class="material-icons-outlined header-icon">menu</span>
-                    <img class="header-logo" src="@/assets/logo.svg" alt="">
+                    <RouterLink to="/" >
+                        <img class="header-logo" src="@/assets/logo.svg" alt="">
+                    </RouterLink>
+                    
                 </div>
 
 
@@ -97,6 +103,7 @@ export default {
 .header-menu-element {
     color: white;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .header-menu-element:hover {
@@ -138,7 +145,7 @@ export default {
     .header-mobile-menu-container{
         position: absolute;
         width: 100%;
-        height: 90vh;
+        height: 100vh;
         background:rgba(0,0,0,0.5);
         opacity: 1;
     }
@@ -177,5 +184,24 @@ export default {
     .mobile-menu-element-icon{
         font-size: 1.5em;
         color: #D87D4A;
+    }
+}
+@media screen and (max-width: 450px) {
+    .header-mobile-menu-body{
+        height: 80%;
+        flex-direction: column;
+    }
+    .mobile-menu-element{
+        width: 60vw;
+        height: 25%;
+    }
+    .mobile-menu-element-img{
+        margin-top: -15%;
+    }
+    .mobile-menu-link-container{
+        margin-top: 4%;
+    }
+    .header-logo {
+        width: 25vw;
     }
 }</style>

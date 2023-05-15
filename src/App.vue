@@ -90,4 +90,7 @@ p {
 @media screen and (max-width: 850px) {
   body {font-size: 2vw;}
 }
+@media screen and (max-width: 450px) {
+  body {font-size: 3vw;}
+}
 </style>
