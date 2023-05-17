@@ -117,6 +117,7 @@ export default {
     width: 10vw;
 }
 
+
 .header-menu {
     display: flex;
     gap: 2.5vw;
@@ -136,6 +137,9 @@ export default {
     color: white;
     font-size: 1.7em;
     cursor: pointer;
+}
+.header-icon:hover {
+    color: #D87D4A;
 }
 
 .mobile {

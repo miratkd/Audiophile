@@ -198,4 +198,16 @@ export default {
 .cart-button:hover{
     background-color: #fbaf85;
 }
+@media screen and (max-width: 850px) {
+    .cart-body{
+        width: 50vw;
+        right: 6vw;
+        padding: 2vh 3vw;
+    }
+}
+@media screen and (max-width: 550px) {
+    .cart-body{
+        width: 82vw;
+    }
+}
 </style>
