@@ -101,7 +101,7 @@ export default {
 
 <style scoped>
 .header-container {
-    background-color: #101010;
+    background-color: #1C1C1C;
 }
 
 .header-line {
