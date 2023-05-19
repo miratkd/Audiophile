@@ -6,12 +6,20 @@
         <h1 style="color: white;">XX99 Mark II Headphones</h1>
         <p class="home-banner-text">Experience natural, lifelike audio and exceptional build quality made for the
           passionate music enthusiast.</p>
-        <ButtonComponent text="Ver produtos" />
+        <ButtonComponent text="Ver produto" />
       </div>
       <img class="home-banner-img" src="@/assets/image-hero.jpg" alt="">
     </div>
     <div class="home-content-container">
       <CategoriesComponent />
+      <div class="home-img1-container">
+        <img class="home-img1-img" src="@/assets/homeImg1.svg" alt="">
+        <div class="home-img1-info-container">
+          <h1 class="home-img1-info-title">ZX9 SPEAKER</h1>
+          <p class="home-img1-info-text">Upgrade to premium speakers that are phenomenally built to deliver truly remarkable sound.</p>
+          <ButtonComponent text="Ver produto" :black="true" />
+        </div>
+      </div>
     </div>
     
 
@@ -56,6 +64,27 @@ export default {
 }
 .home-content-container{
   padding: 3vh 11.5%;
+}
+.home-img1-container{
+  position: relative;
+}
+.home-img1-img{
+  width: 100%;
+}
+.home-img1-info-container{
+  position: absolute;
+  top: 20%;
+  left: 60%;
+  width: 30%;
+}
+.home-img1-info-title{
+  color: white;
+  margin-bottom: 3vh;
+}
+.home-img1-info-text{
+  color: white;
+  margin-bottom: 5vh;
+  opacity: 0.75;
 }
 
 @media screen and (max-width: 850px) {
