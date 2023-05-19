@@ -170,6 +170,7 @@ export default {
     }
     .header-mobile-menu-container{
         position: absolute;
+        z-index: 5;
         width: 100%;
         height: 100vh;
         background:rgba(0,0,0,0.5);
@@ -229,5 +230,9 @@ export default {
     }
     .header-logo {
         width: 25vw;
+    }
+    .header-left-container{
+        width: 65%;
+        justify-content: space-between;
     }
 }</style>
