@@ -102,6 +102,7 @@ export default {
     height: 100vh;
     background:rgba(0,0,0,0.5);
     opacity: 1;
+    z-index: 5;
 }
 .cart-body{
     position: absolute;
