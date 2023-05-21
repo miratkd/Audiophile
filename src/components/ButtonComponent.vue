@@ -46,4 +46,14 @@ export default {
 .button-container-black:hover{
     background-color: #4C4C4C;
 }
+@media screen and (max-width: 450px) {
+    .button-container-black{
+        min-width: 40vw;
+        padding: 1.5vh 4vw;
+    }
+    .button-container{
+        min-width: 40vw;
+        padding: 1.5vh 4vw;
+    }
+}
 </style>

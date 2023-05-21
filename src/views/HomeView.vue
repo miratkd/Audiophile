@@ -13,7 +13,13 @@
     <div class="home-content-container">
       <CategoriesComponent />
       <div class="home-img1-container">
-        <img class="home-img1-img" src="@/assets/homeImg1.svg" alt="">
+        <!-- Desktop -->
+        <img class="home-img1-img desktop-img" src="@/assets/homeImg1.svg" alt="">
+        <!-- Tablet -->
+        <img class="home-img1-img tablet-img" src="@/assets/homeImg1Tablet.svg" alt="">
+        <!-- Mobile -->
+        <img class="home-img1-img mobile-img" src="@/assets/homeImg1Mobile.svg" alt="">
+
         <div class="home-img1-info-container">
           <h1 class="home-img1-info-title">ZX9 SPEAKER</h1>
           <p class="home-img1-info-text">Upgrade to premium speakers that are phenomenally built to deliver truly remarkable sound.</p>
@@ -86,8 +92,29 @@ export default {
   margin-bottom: 5vh;
   opacity: 0.75;
 }
+.tablet-img{
+  display: none;
+}
+.mobile-img{
+  display: none;
+}
 
 @media screen and (max-width: 850px) {
+  .desktop-img{
+    display: none;
+  }
+  .tablet-img{
+    display: flex;
+  }
+  .home-img1-info-container{
+    top: 45%;
+    left: 24%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
   .home-banner-container {
     position: relative;
     padding: 1vh 11.5%;
@@ -122,6 +149,20 @@ export default {
 
   .home-banner-info {
     width: 100%;
+  }
+  .tablet-img{
+    display: none;
+  }
+  .mobile-img{
+    display: flex;
+  }
+  .home-img1-container{
+    margin-top: 2vh;
+  }
+  .home-img1-info-container{
+    top: 50%;
+    width: 70%;
+    left: 15%;
   }
 
 }
