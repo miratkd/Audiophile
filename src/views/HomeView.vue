@@ -12,22 +12,41 @@
     </div>
     <div class="home-content-container">
       <CategoriesComponent />
+
       <div class="home-img1-container">
         <!-- Desktop -->
-        <img class="home-img1-img desktop-img" src="@/assets/homeImg1.svg" alt="">
+        <img class="home-img-img desktop-img" src="@/assets/homeImg1.svg" alt="">
         <!-- Tablet -->
-        <img class="home-img1-img tablet-img" src="@/assets/homeImg1Tablet.svg" alt="">
+        <img class="home-img-img tablet-img" src="@/assets/homeImg1Tablet.svg" alt="">
         <!-- Mobile -->
-        <img class="home-img1-img mobile-img" src="@/assets/homeImg1Mobile.svg" alt="">
+        <img class="home-img-img mobile-img" src="@/assets/homeImg1Mobile.svg" alt="">
 
         <div class="home-img1-info-container">
           <h1 class="home-img1-info-title">ZX9 SPEAKER</h1>
-          <p class="home-img1-info-text">Upgrade to premium speakers that are phenomenally built to deliver truly remarkable sound.</p>
-          <ButtonComponent text="Ver produto" :black="true" />
+          <p class="home-img1-info-text">Upgrade to premium speakers that are phenomenally built to deliver truly
+            remarkable sound.</p>
+          <ButtonComponent text="Ver produto" type="black" />
+        </div>
+
+
+      </div>
+
+      <div class="home-img2-container">
+        <!-- Desktop -->
+        <img class="home-img-img desktop-img" src="@/assets/homeImg2.svg" alt="">
+        <!-- Tablet -->
+        <img class="home-img-img tablet-img" src="@/assets/homeImg2Tablet.svg" alt="">
+        <!-- Mobile -->
+        <img class="home-img-img mobile-img" src="@/assets/homeImg2Mobile.svg" alt="">
+        
+        <div class="home-img2-info-container">
+          <h2 class="home-img2-title">ZX7 SPEAKER</h2>
+          <ButtonComponent text="Ver produto" type="transparent" />
         </div>
       </div>
+
     </div>
-    
+
 
   </div>
 </template>
@@ -68,45 +87,69 @@ export default {
   width: 70%;
   padding: 2vh 0;
 }
-.home-content-container{
+
+.home-content-container {
   padding: 3vh 11.5%;
 }
-.home-img1-container{
+
+.home-img1-container {
   position: relative;
 }
-.home-img1-img{
+
+.home-img-img {
   width: 100%;
 }
-.home-img1-info-container{
+
+.home-img1-info-container {
   position: absolute;
   top: 20%;
   left: 60%;
   width: 30%;
 }
-.home-img1-info-title{
+
+.home-img1-info-title {
   color: white;
   margin-bottom: 3vh;
 }
-.home-img1-info-text{
+
+.home-img1-info-text {
   color: white;
   margin-bottom: 5vh;
   opacity: 0.75;
 }
-.tablet-img{
-  display: none;
-}
-.mobile-img{
+
+.tablet-img {
   display: none;
 }
 
+.mobile-img {
+  display: none;
+}
+
+.home-img2-container {
+  position: relative;
+  margin-top: 3vh;
+}
+
+.home-img2-info-container{
+  position: absolute;
+  top: 22%;
+  left: 10%;
+}
+.home-img2-title{
+  margin-bottom: 3vh;
+}
+
 @media screen and (max-width: 850px) {
-  .desktop-img{
+  .desktop-img {
     display: none;
   }
-  .tablet-img{
+
+  .tablet-img {
     display: flex;
   }
-  .home-img1-info-container{
+
+  .home-img1-info-container {
     top: 45%;
     left: 24%;
     width: 50%;
@@ -115,6 +158,7 @@ export default {
     align-items: center;
     text-align: center;
   }
+
   .home-banner-container {
     position: relative;
     padding: 1vh 11.5%;
@@ -132,8 +176,13 @@ export default {
   .home-banner-img {
     margin: 0 auto;
   }
-  .home-content-container{
+
+  .home-content-container {
     padding: 3vh 6vw;
+  }
+  .home-img2-info-container{
+    top: 25%;
+    left: 7%;
   }
 }
 
@@ -150,20 +199,28 @@ export default {
   .home-banner-info {
     width: 100%;
   }
-  .tablet-img{
+
+  .tablet-img {
     display: none;
   }
-  .mobile-img{
+
+  .mobile-img {
     display: flex;
   }
-  .home-img1-container{
+
+  .home-img1-container {
     margin-top: 2vh;
   }
-  .home-img1-info-container{
+
+  .home-img1-info-container {
     top: 50%;
     width: 70%;
     left: 15%;
   }
+  .home-img2-info-container{
+    top: 30%;
+    left: 5%;
+  }
 
-}
-</style>
+
+}</style>
