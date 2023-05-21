@@ -58,6 +58,8 @@
 
       </div>
 
+      <BrandInfoComponent style="margin-top: 20vh;"/>
+
     </div>
 
 
@@ -67,12 +69,14 @@
 <script>
 import ButtonComponent from '@/components/ButtonComponent.vue';
 import CategoriesComponent from '@/components/CategoriesComponent.vue';
+import BrandInfoComponent from '@/components/BrandInfoComponent.vue';
 
 export default {
   name: 'HomeView',
   components: {
     ButtonComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    BrandInfoComponent
   }
 }
 </script>
