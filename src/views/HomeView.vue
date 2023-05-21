@@ -55,14 +55,10 @@
           <h2>YX1 EARPHONES</h2>
           <ButtonComponent text="Ver produto" type="transparent" />
         </div>
-
       </div>
-
-      <BrandInfoComponent style="margin-top: 20vh;"/>
-
+      <BrandInfoComponent style="margin-top: 15vh;"/>
     </div>
-
-
+    <FooterComponent style="margin-top: 10vh;"/>
   </div>
 </template>
 
@@ -70,13 +66,15 @@
 import ButtonComponent from '@/components/ButtonComponent.vue';
 import CategoriesComponent from '@/components/CategoriesComponent.vue';
 import BrandInfoComponent from '@/components/BrandInfoComponent.vue';
+import FooterComponent from '@/components/FooterComponent.vue';
 
 export default {
   name: 'HomeView',
   components: {
     ButtonComponent,
     CategoriesComponent,
-    BrandInfoComponent
+    BrandInfoComponent,
+    FooterComponent
   }
 }
 </script>
