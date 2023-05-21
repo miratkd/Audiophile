@@ -27,8 +27,6 @@
             remarkable sound.</p>
           <ButtonComponent text="Ver produto" type="black" />
         </div>
-
-
       </div>
 
       <div class="home-img2-container">
@@ -43,6 +41,21 @@
           <h2 class="home-img2-title">ZX7 SPEAKER</h2>
           <ButtonComponent text="Ver produto" type="transparent" />
         </div>
+      </div>
+
+      <div class="home-img3-container">
+        <!-- Desktop -->
+        <img class="home-img3-img desktop-img" src="@/assets/homeImg3.svg" alt="">
+        <!-- Tablet -->
+        <img class="home-img3-img tablet-img" src="@/assets/homeImg3Tablet.svg" alt="">
+        <!-- Mobile -->
+        <img class="home-img3-img mobile-img" src="@/assets/homeImg3Mobile.svg" alt="">
+
+        <div class="home-img3-info-container">
+          <h2>YX1 EARPHONES</h2>
+          <ButtonComponent text="Ver produto" type="transparent" />
+        </div>
+
       </div>
 
     </div>
@@ -139,6 +152,25 @@ export default {
 .home-img2-title{
   margin-bottom: 3vh;
 }
+.home-img3-container{
+  margin-top: 3vh;
+  display: flex;
+  justify-content: space-between;
+}
+.home-img3-img{
+  width: 49%;
+}
+.home-img3-info-container{
+  width: 44%;
+  background-color: #F1F1F1;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding-left: 5%;
+  gap: 10%;
+}
 
 @media screen and (max-width: 850px) {
   .desktop-img {
@@ -184,6 +216,10 @@ export default {
     top: 25%;
     left: 7%;
   }
+  .home-img3-info-container{
+    width: 47%;
+    padding-left: 3%;
+  }
 }
 
 @media screen and (max-width: 450px) {
@@ -221,6 +257,18 @@ export default {
     top: 30%;
     left: 5%;
   }
-
+  .home-img3-container{
+    flex-direction: column;
+    gap: 2vh;
+  }
+  .home-img3-img{
+    width: 100%;
+  }
+  .home-img3-info-container{
+    width: 95%;
+    padding-left: 5%;
+    height: 25vh;
+    gap: 3vh;
+  }
 
 }</style>
