@@ -1,13 +1,17 @@
 <template>
   <Header/>
   <router-view/>
+  <FooterComponent style="margin-top: 10vh;"/>
 </template>
 
 <script>
 import Header from './components/Header.vue';
+import FooterComponent from './components/FooterComponent.vue';
+
 export default {
   components:{
-    Header
+    Header,
+    FooterComponent
   }
 }
 </script>
