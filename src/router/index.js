@@ -22,6 +22,11 @@ const routes = [
     name: 'phones',
     component: () => import('../views/PhonesView.vue')
   },
+  {
+    path: '/produto/:productId',
+    name: 'product',
+    component: () => import('../views/ProductView.vue')
+  },
 ]
 
 const router = createRouter({

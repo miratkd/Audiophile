@@ -6,7 +6,7 @@
         <h1 style="color: white;">XX99 Mark II Headphones</h1>
         <p class="home-banner-text">Experience natural, lifelike audio and exceptional build quality made for the
           passionate music enthusiast.</p>
-        <ButtonComponent text="Ver produto" />
+        <ButtonComponent text="Ver produto" :action="sendProduct1" />
       </div>
       <img class="home-banner-img" src="@/assets/image-hero.jpg" alt="">
     </div>
@@ -25,7 +25,7 @@
           <h1 class="home-img1-info-title">ZX9 SPEAKER</h1>
           <p class="home-img1-info-text">Upgrade to premium speakers that are phenomenally built to deliver truly
             remarkable sound.</p>
-          <ButtonComponent text="Ver produto" type="black" />
+          <ButtonComponent text="Ver produto" type="black" :action="sendProduct4"/>
         </div>
       </div>
 
@@ -39,7 +39,7 @@
         
         <div class="home-img2-info-container">
           <h2 class="home-img2-title">ZX7 SPEAKER</h2>
-          <ButtonComponent text="Ver produto" type="transparent" />
+          <ButtonComponent text="Ver produto" type="transparent" :action="sendProduct5"/>
         </div>
       </div>
 
@@ -53,7 +53,7 @@
 
         <div class="home-img3-info-container">
           <h2>YX1 EARPHONES</h2>
-          <ButtonComponent text="Ver produto" type="transparent" />
+          <ButtonComponent text="Ver produto" type="transparent" :action="sendProduct6"/>
         </div>
       </div>
       <BrandInfoComponent style="margin-top: 15vh;"/>
@@ -71,6 +71,20 @@ export default {
     ButtonComponent,
     CategoriesComponent,
     BrandInfoComponent
+  },
+  methods:{
+    sendProduct1 () {
+      this.$router.push('/produto/1')
+    },
+    sendProduct4 () {
+      this.$router.push('/produto/4')
+    },
+    sendProduct5 () {
+      this.$router.push('/produto/5')
+    },
+    sendProduct6 () {
+      this.$router.push('/produto/6')
+    }
   }
 }
 </script>

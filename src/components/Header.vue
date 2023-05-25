@@ -9,9 +9,9 @@
                 
                 <div class="header-menu desktop">
                     <RouterLink to="/" class="subtitle header-menu-element">Home</RouterLink>
-                    <RouterLink to="headphones" class="subtitle header-menu-element">HEADPHONES</RouterLink>
-                    <RouterLink to="speakers" class="subtitle header-menu-element">SPEAKERS</RouterLink>
-                    <RouterLink to="fones" class="subtitle header-menu-element">fones</RouterLink>
+                    <RouterLink to="/headphones" class="subtitle header-menu-element">HEADPHONES</RouterLink>
+                    <RouterLink to="/speakers" class="subtitle header-menu-element">SPEAKERS</RouterLink>
+                    <RouterLink to="/fones" class="subtitle header-menu-element">fones</RouterLink>
                 </div>
 
                 <!-- Mobile -->

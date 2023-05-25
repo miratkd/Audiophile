@@ -1,11 +1,11 @@
 <template>
-    <button :class="getClass">{{text}}</button>
+    <button v-on:click="action()" :class="getClass">{{text}}</button>
 </template>
 
 <script>
 export default {
     name: 'ButtonComponent',
-    props:['text', 'type'],
+    props:['text', 'type', 'action'],
     computed:{
         getClass() {
             if (this.type == 'transparent') return 'button-container-transparent'

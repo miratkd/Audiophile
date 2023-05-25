@@ -5,7 +5,7 @@
             <p v-if="product.isNewProduct" class="overline">Produto Novo</p>
             <h2>{{product.name}}</h2>
             <p class="product-card-text">{{product.description}}</p>
-            <ButtonComponent class="product-card-button" text="Ver produto" />
+            <ButtonComponent class="product-card-button" text="Ver produto" :action="sendProduct"/>
         </div>
     </div>
 </template>
@@ -18,6 +18,11 @@ export default {
     props: ['isReversed', 'product'],
     components:{
         ButtonComponent
+    },
+    methods: {
+        sendProduct() {
+            this.$router.push('/produto/' + this.product.id)
+        }
     }
 }
 </script>

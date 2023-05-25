@@ -118,6 +118,12 @@ export default createStore({
     ]
   },
   getters: {
+    getProductByID: (state) => (id) => {
+      for (let index = 0; index < state.products.length; index++) {
+        const element = state.products[index];
+        if (element.id == id) return element
+      }
+    }
   },
   mutations: {
   },
