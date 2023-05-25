@@ -1,9 +1,9 @@
 <template>
     <div>
-        <h2 class="headphones-title">
+        <h2 class="speakers-title">
             speakers
         </h2>
-        <div class="headphones-body">
+        <div class="speakers-body">
             <ProductCardComponent v-for="(product, idx) in products" :key="idx" :isReversed="idx % 2 != 0" :product="product"/>
             <CategoriesComponent />
             <BrandInfoComponent style="margin-top: 15vh;"/>
@@ -35,18 +35,18 @@ export default {
 </script>
 
 <style scoped>
-.headphones-title{
+.speakers-title{
     background-color: #1C1C1C;
     text-align: center;
     padding: 6vh 0;
     color: white;
 }
-.headphones-body{
+.speakers-body{
     padding: 5vh 11.5%;
 }
 
 @media screen and (max-width: 850px){
-    .headphones-body{
+    .speakers-body{
         padding: 5vh 6vw;
     }
 }

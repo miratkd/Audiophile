@@ -96,6 +96,25 @@ export default createStore({
         img2: require('@/assets/productImgs/zx7img2.svg'),
         img3: require('@/assets/productImgs/zx7img3.svg'),
       },
+      {
+        id: 6,
+        name: 'YX1 WIRELESS EARPHONES',
+        isNewProduct: true,
+        description: 'Tailor your listening experience with bespoke dynamic drivers from the new YX1 Wireless Earphones. Enjoy incredible high-fidelity sound even in noisy environments with its active noise cancellation feature.',
+        price: 599,
+        features: 'Experience unrivalled stereo sound thanks to innovative acoustic technology. With improved ergonomics designed for full day wearing, these revolutionary earphones have been finely crafted to provide you with the perfect fit, delivering complete comfort all day long while enjoying exceptional noise isolation and truly immersive sound. The YX1 Wireless Earphones features customizable controls for volume, music, calls, and voice assistants built into both earbuds. The new 7-hour battery life can be extended up to 28 hours with the charging case, giving you uninterrupted play time. Exquisite craftsmanship with a splash resistant design now available in an all new white and grey color scheme as well as the popular classic black.',
+        inTheBox: [
+          { qty: 2, text: 'Earphone Unit'},
+          { qty: 6, text: 'Multi-size Earplugs'},
+          { qty: 1, text: 'User Manual'},
+          { qty: 1, text: 'USB-C Charging Cable'},
+          { qty: 1, text: 'Travel Pouch'}
+        ],
+        mainImg: require('@/assets/productImgs/yx1MainImg.svg'),
+        img1: require('@/assets/productImgs/yx1img1.svg'),
+        img2: require('@/assets/productImgs/yx1img2.svg'),
+        img3: require('@/assets/productImgs/yx1img3.svg'),
+      }
     ]
   },
   getters: {
