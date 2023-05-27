@@ -25,7 +25,7 @@ export default {
     },
     methods:{
         clickLink () {
-            this.$router.push('/produto/' + this.productId)
+            this.$router.push ('/produto/' + this.productId)
         }
     }
 }

@@ -1,23 +1,23 @@
 <template>
     <div class="product-container">
-        <p class="product-back-button">Voltar</p>
-        <ProductCardComponent :isReversed="false" :product="product" :details="true"/>
+        <p class="product-back-button" v-on:click="returnPage()">Voltar</p>
+        <ProductCardComponent :isReversed="false" :product="product" :details="true" />
 
         <div class="product-features-container">
             <div class="product-features">
                 <h3>FEATURES</h3>
-                <p class="product-features-text">{{product.features}}</p>
+                <p class="product-features-text">{{ product.features }}</p>
             </div>
             <div class="product-box">
                 <h3>conteudo</h3>
                 <div class="product-box-lines-container">
                     <div class="product-box-line" v-for="item in product.inTheBox" :key="item.text">
-                        <p class="product-box-qty">{{item.qty}}x</p>
-                        <p style="color: gray;">{{item.text}}</p>
+                        <p class="product-box-qty">{{ item.qty }}x</p>
+                        <p style="color: gray;">{{ item.text }}</p>
                     </div>
                 </div>
             </div>
-            
+
         </div>
 
         <div class="product-images-container">
@@ -30,12 +30,13 @@
 
         <h3 class="recomendation-title">you may also like</h3>
         <div class="recomendation-container">
-            <RecomendationCardComponent v-for="recomendation in product.recomentationList" :key="recomendation" :productId="recomendation"/>
+            <RecomendationCardComponent v-for="recomendation in product.recomentationList" :key="recomendation"
+                :productId="recomendation" />
         </div>
 
-        <CategoriesComponent class="categories-container"/>
+        <CategoriesComponent class="categories-container" />
 
-        <BrandInfoComponent class="categories-container"/>
+        <BrandInfoComponent class="categories-container" />
 
     </div>
 </template>
@@ -54,114 +55,122 @@ export default {
         CategoriesComponent,
         BrandInfoComponent
     },
-    data () {
+    data() {
         return {
             product: {}
         }
     },
-    created () {
+    created() {
         this.product = this.$store.getters.getProductByID(this.$route.params.productId)
+    },
+    methods: {
+        returnPage() {
+            this.$router.go(-1)
+        }
+    },
+    watch: {
+        '$route.params': {
+            handler() {
+                this.product = this.$store.getters.getProductByID(this.$route.params.productId)
+            },
+            immediate: true,
+        }
     }
 }
 </script>
 
 <style scoped>
-
-.product-container{
+.product-container {
     padding: 4vh 11.5%;
 }
 
-.product-main-line{
+.product-main-line {
     display: flex;
     align-items: center;
 }
 
-.product-main-img{
+.product-main-img {
     width: 50%;
 }
 
-.product-back-button{
+.product-back-button {
     margin-bottom: 3vh;
     cursor: pointer;
     color: gray;
 }
 
-.product-features-container{
+.product-features-container {
     display: flex;
     justify-content: space-between;
 }
 
-.product-features{
+.product-features {
     width: 60%;
 }
 
-.product-features-text{
+.product-features-text {
     color: gray;
     margin-top: 2vh;
 }
 
-.product-box{
+.product-box {
     width: 25%;
 }
 
-.product-box-lines-container{
+.product-box-lines-container {
     margin-top: 2vh;
     display: flex;
     flex-direction: column;
     gap: 1vh;
 }
 
-.product-box-line{
+.product-box-line {
     display: flex;
     align-items: center;
 }
 
-.product-box-qty{
+.product-box-qty {
     color: #D87D4A;
     margin-right: 2vw;
 }
 
-.product-images-container{
+.product-images-container {
     display: flex;
     justify-content: space-between;
     margin-top: 10vh;
 }
 
-.product-images-left{
+.product-images-left {
     width: 40%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
-.product-images-rigth{
+.product-images-rigth {
     width: 55%;
 }
 
-.product-images-small{
+.product-images-small {
     width: 100%;
 }
 
-.recomendation-title{
+.recomendation-title {
     margin-top: 10vh;
     text-align: center;
 }
 
-.recomendation-container{
+.recomendation-container {
     display: flex;
     justify-content: space-between;
     margin-top: 5vh;
 }
 
-.categories-container{
+.categories-container {
     margin-top: 6vh;
 }
-@media screen and (max-width: 850px){
 
-}
+@media screen and (max-width: 850px) {}
 
-@media screen and (max-width: 550px){
-    
-}
-
+@media screen and (max-width: 550px) {}
 </style>
