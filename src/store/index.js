@@ -21,6 +21,7 @@ export default createStore({
         img1: require('@/assets/productImgs/xx99img1.svg'),
         img2: require('@/assets/productImgs/xx99img2.svg'),
         img3: require('@/assets/productImgs/xx99img3.svg'),
+        recomentationList: [2, 3, 4]
       },
       {
         id: 2,
@@ -39,6 +40,7 @@ export default createStore({
         img1: require('@/assets/productImgs/mark1img1.svg'),
         img2: require('@/assets/productImgs/mark1img2.svg'),
         img3: require('@/assets/productImgs/mark1img3.svg'),
+        recomentationList: [1, 3, 4]
       },
       {
         id: 3,
@@ -57,6 +59,7 @@ export default createStore({
         img1: require('@/assets/productImgs/xx59img1.svg'),
         img2: require('@/assets/productImgs/xx59img2.svg'),
         img3: require('@/assets/productImgs/xx59img3.svg'),
+        recomentationList: [1, 2, 4]
       },
       {
         id: 4,
@@ -76,6 +79,7 @@ export default createStore({
         img1: require('@/assets/productImgs/zx9img1.svg'),
         img2: require('@/assets/productImgs/zx9img2.svg'),
         img3: require('@/assets/productImgs/zx9img3.svg'),
+        recomentationList: [5, 2, 3]
       },
       {
         id: 5,
@@ -95,6 +99,7 @@ export default createStore({
         img1: require('@/assets/productImgs/zx7img1.svg'),
         img2: require('@/assets/productImgs/zx7img2.svg'),
         img3: require('@/assets/productImgs/zx7img3.svg'),
+        recomentationList: [4, 2, 3]
       },
       {
         id: 6,
@@ -114,6 +119,7 @@ export default createStore({
         img1: require('@/assets/productImgs/yx1img1.svg'),
         img2: require('@/assets/productImgs/yx1img2.svg'),
         img3: require('@/assets/productImgs/yx1img3.svg'),
+        recomentationList: [2, 3, 4]
       }
     ]
   },

@@ -2,6 +2,7 @@
     <div class="product-container">
         <p class="product-back-button">Voltar</p>
         <ProductCardComponent :isReversed="false" :product="product" :details="true"/>
+
         <div class="product-features-container">
             <div class="product-features">
                 <h3>FEATURES</h3>
@@ -18,6 +19,7 @@
             </div>
             
         </div>
+
         <div class="product-images-container">
             <div class="product-images-left">
                 <img class="product-images-small" :src="product.img1" alt="">
@@ -25,16 +27,32 @@
             </div>
             <img :src="product.img3" class="product-images-rigth">
         </div>
+
+        <h3 class="recomendation-title">you may also like</h3>
+        <div class="recomendation-container">
+            <RecomendationCardComponent v-for="recomendation in product.recomentationList" :key="recomendation" :productId="recomendation"/>
+        </div>
+
+        <CategoriesComponent class="categories-container"/>
+
+        <BrandInfoComponent class="categories-container"/>
+
     </div>
 </template>
 
 <script>
 import ProductCardComponent from '@/components/ProductCardComponent.vue';
+import RecomendationCardComponent from '@/components/RecomendationCardComponent.vue';
+import CategoriesComponent from '@/components/CategoriesComponent.vue';
+import BrandInfoComponent from '@/components/BrandInfoComponent.vue';
 
 export default {
     name: 'ProductView',
     components: {
-        ProductCardComponent
+        ProductCardComponent,
+        RecomendationCardComponent,
+        CategoriesComponent,
+        BrandInfoComponent
     },
     data () {
         return {
@@ -124,6 +142,20 @@ export default {
     width: 100%;
 }
 
+.recomendation-title{
+    margin-top: 10vh;
+    text-align: center;
+}
+
+.recomendation-container{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5vh;
+}
+
+.categories-container{
+    margin-top: 6vh;
+}
 @media screen and (max-width: 850px){
 
 }
