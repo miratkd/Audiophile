@@ -23,9 +23,9 @@
             </div>
             <div class="cart-body-row">
                 <p style="color: gray;">TOTAL</p>
-                <h6>{{currency.format(3500)}}</h6>
+                <h6>{{currency.format(total)}}</h6>
             </div>
-            <button class="cart-button">checkout</button>
+            <button class="cart-button" v-on:click="checkout()">checkout</button>
         </div>
     </div>
 </template>
@@ -46,6 +46,14 @@ export default {
     computed:{
         service () {
             return this.$store.state.cartService
+        },
+        total () {
+            let total = 0
+            for (let index = 0; index < this.productsList.length; index++) {
+                const element = this.productsList[index];
+                total += element.quantity * element.price
+            }
+            return total
         }
     },
     created () {
@@ -55,6 +63,11 @@ export default {
         removeAll () {
             this.service.cleanProducts()
             this.productsList = []
+        },
+        checkout () {
+            this.$router.push('/checkout')
+            this.$store.commit('updateShowCart', false)
+            document.body.style.overflow = 'auto'
         }
     }
 }
