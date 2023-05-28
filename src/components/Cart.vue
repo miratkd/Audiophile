@@ -3,12 +3,12 @@
         <div v-on:click.stop class="cart-body">
             <div class="cart-body-row">
                 <h6>Carrinho (3)</h6>
-                <p class="cart-remove-all">Remover todos</p>
+                <p class="cart-remove-all" v-on:click="removeAll()">Remover todos</p>
             </div>
             <div class="cart-product-list">
                 <div class="cart-product" v-for="product in productsList" :key="product.name">
                     <div class="cart-product-img-container">
-                        <img class="cart-product-img" :src="product.img" alt="">
+                        <img class="cart-product-img" :src="product.mainImg" alt="">
                     </div>
                     <div class="cart-product-info">
                         <p class="cart-product-title">{{product.name}}</p>
@@ -36,62 +36,27 @@ export default {
     props: ['close'],
     data () {
         return {
-            productsList: [
-                {
-                    name: 'xx99 mk 2',
-                    price: 2999,
-                    img: require('@/assets/headephoneImg.svg'),
-                    quantity: 1
-                },
-                {
-                    name: 'xx99 mk 3',
-                    price: 2999,
-                    img: require('@/assets/headephoneImg.svg'),
-                    quantity: 1
-                },
-                {
-                    name: 'xx99 mk 4',
-                    price: 2999,
-                    img: require('@/assets/headephoneImg.svg'),
-                    quantity: 1
-                },
-                {
-                    name: 'xx99 mk 5',
-                    price: 2999,
-                    img: require('@/assets/headephoneImg.svg'),
-                    quantity: 1
-                },
-                {
-                    name: 'xx99 mk 6',
-                    price: 2999,
-                    img: require('@/assets/headephoneImg.svg'),
-                    quantity: 1
-                },
-                {
-                    name: 'xx99 mk 7',
-                    price: 2999,
-                    img: require('@/assets/headephoneImg.svg'),
-                    quantity: 1
-                },
-                {
-                    name: 'xx99 mk 8',
-                    price: 2999,
-                    img: require('@/assets/headephoneImg.svg'),
-                    quantity: 1
-                },
-                {
-                    name: 'xx99 mk 9',
-                    price: 2999,
-                    img: require('@/assets/headephoneImg.svg'),
-                    quantity: 1
-                },
-            ],
+            productsList: [],
             currency: new Intl.NumberFormat('pt-BR', {
                 style: 'currency',
                 currency: 'BRL',
             })
         }
     },
+    computed:{
+        service () {
+            return this.$store.state.cartService
+        }
+    },
+    created () {
+        this.productsList = this.service.getProducts()
+    },
+    methods:{
+        removeAll () {
+            this.service.cleanProducts()
+            this.productsList = []
+        }
+    }
 }
 </script>
 

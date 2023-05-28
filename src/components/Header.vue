@@ -52,20 +52,24 @@ export default {
     data () {
         return {
             showMobileBody: false,
-            showCart: false
         }
     },
     components : {
         Cart,
         CategoriesComponent
     },
+    computed:{
+        showCart () {
+            return this.$store.state.showCart
+        }
+    },
     methods: {
         openCart () {
-            this.showCart = true;
+            this.$store.commit('updateShowCart', true)
             document.body.style.overflow = 'hidden'
         },
         hideCart () {
-            this.showCart = false;
+            this.$store.commit('updateShowCart', false)
             document.body.style.overflow = 'auto'
         },
         togleMenu () {

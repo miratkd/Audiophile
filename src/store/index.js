@@ -1,4 +1,5 @@
 import { createStore } from 'vuex'
+import CartService from '@/services/CartService'
 
 export default createStore({
   state: {
@@ -121,7 +122,9 @@ export default createStore({
         img3: require('@/assets/productImgs/yx1img3.svg'),
         recomentationList: [2, 3, 4]
       }
-    ]
+    ],
+    showCart: false,
+    cartService: new CartService()
   },
   getters: {
     getProductByID: (state) => (id) => {
@@ -132,6 +135,9 @@ export default createStore({
     }
   },
   mutations: {
+    updateShowCart (state, value) {
+      state.showCart = value
+    }
   },
   actions: {
   },

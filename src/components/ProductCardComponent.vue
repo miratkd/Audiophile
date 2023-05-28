@@ -27,7 +27,6 @@
 
 <script>
 import ButtonComponent from '@/components/ButtonComponent.vue';
-import CartService from '@/services/CartService'
 
 export default {
     name: 'ProductCardComponent',
@@ -42,7 +41,11 @@ export default {
                 currency: 'BRL',
             }),
             quantity: 1,
-            service: new CartService()
+        }
+    },
+    computed:{
+        service () {
+            return this.$store.state.cartService
         }
     },
     methods: {
@@ -54,6 +57,8 @@ export default {
                 ...this.product,
                 quantity: this.quantity
             })
+            this.$store.commit('updateShowCart', true)
+            document.body.style.overflow = 'hidden'
         }
     },
     watch: {
