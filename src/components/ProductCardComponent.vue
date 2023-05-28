@@ -58,6 +58,7 @@ export default {
                 quantity: this.quantity
             })
             this.$store.commit('updateShowCart', true)
+            window.scrollTo(0, 0)
             document.body.style.overflow = 'hidden'
         }
     },
@@ -164,5 +165,10 @@ export default {
         align-items: center;
         text-align: center;
     }
+
+    .product-card-quantity-container{
+        width: 100%;
+    }
+
 }
 </style>

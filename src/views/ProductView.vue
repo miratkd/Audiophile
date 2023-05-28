@@ -170,7 +170,52 @@ export default {
     margin-top: 6vh;
 }
 
-@media screen and (max-width: 850px) {}
+@media screen and (max-width: 850px) {
+    .product-container{
+        padding: 4vh 6vw;
+    }
+    .product-features-container{
+        flex-direction: column;
+        gap: 6vh;
+    }
 
-@media screen and (max-width: 550px) {}
+    .product-features{
+        width: 100%;
+    }
+
+    .product-box{
+        width: 100%;
+        display: flex;
+        gap: 20%;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .product-box{
+        flex-direction: column;
+    }
+
+    .product-images-container {
+        flex-direction: column;
+        gap: 3vh;
+    }
+
+    .product-images-rigth{
+        width: 100%;
+    }
+
+    .product-images-left{
+        width: 100%;
+        gap: 3vh;
+    }
+
+    .recomendation-container {
+        flex-direction: column;
+        gap: 5vh;
+    }
+
+    .categories-container{
+        margin-top: 12vh;
+    }
+}
 </style>

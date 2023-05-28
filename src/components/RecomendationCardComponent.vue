@@ -52,4 +52,22 @@ export default {
 .recomendation-card-button{
     width: 60%;
 }
+
+@media screen and (max-width: 850px) {
+    .recomendation-card-button{
+        width: 100%;
+    }
+    .recomendation-card-container{
+        width: 100%;
+    }
+
+    .recomendation-card-img{
+        width: 50%;
+    }
+
+    .recomendation-card-button{
+        width: 75%;
+    }
+
+}
 </style>
