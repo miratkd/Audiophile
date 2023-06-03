@@ -7,27 +7,47 @@
                 <h3>CHECKOUT</h3>
                 <p class="subtitle checkout-subtitle">Billing Details</p>
                 <div class="checkout-input-line checkout-inputs-margin">
-                    <InputComponent :errorMessage="nameMessage" :setValue="value => name = value" placeholder="Alex" class="checkout-input-half" title="name"/>
-                    <InputComponent :errorMessage="emailMessage" :setValue="value => email = value" placeholder="Alex@gmail.com" class="checkout-input-half" title="Email adress"/>
+                    <InputComponent :errorMessage="nameMessage" :setValue="value => name = value" placeholder="Alex"
+                        class="checkout-input-half" title="name" />
+                    <InputComponent :errorMessage="emailMessage" :setValue="value => email = value"
+                        placeholder="Alex@gmail.com" class="checkout-input-half" title="Email adress" />
                 </div>
                 <div class="checkout-input-line checkout-inputs-margin">
-                    <InputComponent :errorMessage="phoneMessage" :setValue="value => phone = value" placeholder="(12)3456-7891" type="tel" class="checkout-input-half" title="Phone Number"/>
+                    <InputComponent :errorMessage="phoneMessage" :setValue="value => phone = value"
+                        placeholder="(12)3456-7891" type="tel" class="checkout-input-half" title="Phone Number" />
                 </div>
-                
-                <p  class="subtitle  checkout-subtitle">shipping info</p>
-                <InputComponent :errorMessage="addressMessage" :setValue="value => address = value" class=" checkout-inputs-margin" placeholder="Rua das palmeiras" title="Address"/>
+
+                <p class="subtitle  checkout-subtitle">shipping info</p>
+                <InputComponent :errorMessage="addressMessage" :setValue="value => address = value"
+                    class=" checkout-inputs-margin" placeholder="Rua das palmeiras" title="Address" />
                 <div class="checkout-input-line  checkout-inputs-margin">
-                    <InputComponent :errorMessage="zipMessage" :setValue="value => zip = value" type="zip" class="checkout-input-half" title="zip code" placeholder="12 323-230"/>
-                    <InputComponent :errorMessage="cityMessage" :setValue="value => city = value" class="checkout-input-half" title="city" placeholder="São Paulo"/>
+                    <InputComponent :errorMessage="zipMessage" :setValue="value => zip = value" type="zip"
+                        class="checkout-input-half" title="zip code" placeholder="12 323-230" />
+                    <InputComponent :errorMessage="cityMessage" :setValue="value => city = value"
+                        class="checkout-input-half" title="city" placeholder="São Paulo" />
                 </div>
                 <div class="checkout-input-line  checkout-inputs-margin">
-                    <InputComponent :errorMessage="countryMessage" :setValue="value => country = value" class="checkout-input-half" title="country" placeholder="Brasil"/>
+                    <InputComponent :errorMessage="countryMessage" :setValue="value => country = value"
+                        class="checkout-input-half" title="country" placeholder="Brasil" />
                 </div>
             </div>
 
             <div class="checkout-rigth-container">
                 <h6>Resumo</h6>
-                <button v-on:click="save()">salvar</button>
+                <div class="checkout-product-list">
+                    <div class="checkout-product" v-for="product in productsList" :key="product.name">
+                        <div class="checkout-product-img-container">
+                            <img class="checkout-product-img" :src="product.mainImg" alt="">
+                        </div>
+                        <div class="checkout-product-info">
+                            <p class="checkout-product-title">{{product.name}}</p>
+                            <p class="checkout-product-price">{{currency.format(product.price)}}</p>
+                        </div>
+                        <div class="checkout-product-quantity">
+                            <p class="checkout-product-price">X{{}}</p>
+                        </div>
+                    </div>
+                </div>
             </div>
 
         </div>
@@ -39,11 +59,16 @@ import InputComponent from '@/components/InputComponent.vue';
 
 export default {
     name: 'CheckoutView',
-    components:{
+    components: {
         InputComponent
     },
     data() {
         return {
+            productsList: [],
+            currency: new Intl.NumberFormat('pt-BR', {
+                style: 'currency',
+                currency: 'BRL',
+            }),
             name: '',
             nameMessage: '',
             email: '',
@@ -60,24 +85,40 @@ export default {
             countryMessage: ''
         }
     },
-    watch:{
-        name (newValue) {if (newValue) this.nameMessage = ''},
-        email (newValue) {if (newValue) this.emailMessage = ''},
-        phone (newValue) {if (newValue) this.phoneMessage = ''},
-        address (newValue) {if (newValue) this.addressMessage = ''},
-        zip (newValue) {if (newValue) this.zipMessage = ''},
-        city (newValue) {if (newValue) this.cityMessage = ''},
-        country (newValue) {if (newValue) this.countryMessage = ''},
+    computed: {
+        service() {
+            return this.$store.state.cartService
+        },
+        total() {
+            let total = 0
+            for (let index = 0; index < this.productsList.length; index++) {
+                const element = this.productsList[index];
+                total += element.quantity * element.price
+            }
+            return total
+        }
+    },
+    watch: {
+        name(newValue) { if (newValue) this.nameMessage = '' },
+        email(newValue) { if (newValue) this.emailMessage = '' },
+        phone(newValue) { if (newValue) this.phoneMessage = '' },
+        address(newValue) { if (newValue) this.addressMessage = '' },
+        zip(newValue) { if (newValue) this.zipMessage = '' },
+        city(newValue) { if (newValue) this.cityMessage = '' },
+        country(newValue) { if (newValue) this.countryMessage = '' },
+    },
+    created () {
+        this.productsList = this.service.getProducts()
     },
     methods: {
         returnPage() {
             this.$router.go(-1)
         },
-        save () {
+        save() {
             if (!this.name) this.nameMessage = 'Campo obrigatorio'
             else if (this.name.length < 5) this.nameMessage = 'Nome completo'
 
-            const pattern = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.([a-z]+)?$/i 
+            const pattern = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.([a-z]+)?$/i
             if (!this.email) this.emailMessage = 'Campo obrigatorio'
             else if (!this.email.match(pattern)) this.emailMessage = 'Insira um email valido'
 
@@ -109,73 +150,126 @@ export default {
     cursor: pointer;
 }
 
-.checkout-body-container{
+.checkout-body-container {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
 }
 
-.checkout-left-container{
+.checkout-left-container {
     background-color: white;
     border-radius: 8px;
     width: 66%;
     padding: 4vh 2vw;
 }
 
-.checkout-rigth-container{
+.checkout-rigth-container {
     background-color: white;
     border-radius: 8px;
-    width: 20%;
-    padding: 4vh 2vw;
+    width: 22%;
+    padding: 3vh 1.5vw;
 }
 
-.checkout-input-line{
+.checkout-input-line {
     display: flex;
     justify-content: space-between;
 }
-.checkout-subtitle{
+
+.checkout-subtitle {
     margin-top: 3vh;
 }
 
-.checkout-inputs-margin{
+.checkout-inputs-margin {
     margin-top: 1vh;
 }
 
-.checkout-input-half{
+.checkout-input-half {
     width: 45%;
+}
+
+.checkout-product-list{
+    margin-top: 3vh;
+    min-height: 10vh;
+    max-height: 45vh;
+    overflow-y: auto;
+    gap: 2vh;
+    display: flex;
+    flex-direction: column;
+}
+.checkout-product{
+    display: flex;
+    align-items: center;
+}
+.checkout-product-img-container{
+    width: 25%;
+    height: 7vh;
+    background-color: #F1F1F1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+}
+.checkout-product-quantity{
+    width: 20%;
+    height: 3vh;
+}
+.checkout-product-info{
+    flex: 1;
+    padding-left: 4%;
+}
+.checkout-product-img{
+    max-height: 85%;
+}
+.checkout-product-title{
+    font-weight: bold;
+}
+.checkout-product-price{
+    color: gray;
+}
+.checkout-product-quantity-inputs{
+    color: gray;
+    cursor: pointer;
+    -webkit-user-select: none; /* Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
+}
+.checkout-product-quantity-inputs:hover{
+    color: #D87D4A;
 }
 
 
 @media screen and (max-width: 850px) {
-    .checkout-container{
+    .checkout-container {
         padding: 4vh 6vw;
     }
 
-    .checkout-body-container{
+    .checkout-body-container {
         flex-direction: column;
         gap: 3vh;
     }
 
-    .checkout-left-container{
+    .checkout-left-container {
         width: 94%;
     }
 
-    .checkout-rigth-container{
+    .checkout-rigth-container {
         width: 94%;
     }
 }
 
 @media screen and (max-width: 550px) {
-    .checkout-input-line{
+    .checkout-input-line {
         flex-direction: column;
         gap: 1vh;
     }
-    .checkout-input-half{
+
+    .checkout-input-half {
         width: 100%;
     }
-    .checkout-left-container{
+
+    .checkout-left-container {
         padding: 4vh 4vw;
         width: 92%;
     }
-}
-</style>
+}</style>
