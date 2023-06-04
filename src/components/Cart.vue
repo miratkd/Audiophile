@@ -2,7 +2,7 @@
     <div v-on:click="close()" class="cart-container">
         <div v-on:click.stop class="cart-body">
             <div class="cart-body-row">
-                <h6>Carrinho (3)</h6>
+                <h6>Carrinho ({{ productsList.length }})</h6>
                 <p class="cart-remove-all" v-on:click="removeAll()">Remover todos</p>
             </div>
             <div class="cart-product-list">

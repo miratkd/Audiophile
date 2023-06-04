@@ -27,5 +27,18 @@ class CartService {
         localStorage.removeItem('cartList')
         this.products = []
     }
+
+    getTotal () {
+        let total = 0
+        for (let index = 0; index < this.products.length; index++) {
+            const element = this.products[index];
+            total += element.price * element.quantity
+        }
+        return total
+    }
+
+    getShipping () {
+        return (this.products.length * 35) + 15
+    }
 }
 export default CartService

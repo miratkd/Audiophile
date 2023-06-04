@@ -40,27 +40,48 @@
                             <img class="checkout-product-img" :src="product.mainImg" alt="">
                         </div>
                         <div class="checkout-product-info">
-                            <p class="checkout-product-title">{{product.name}}</p>
-                            <p class="checkout-product-price">{{currency.format(product.price)}}</p>
+                            <p class="checkout-product-title">{{ product.name }}</p>
+                            <p class="checkout-product-price">{{ currency.format(product.price) }}</p>
                         </div>
                         <div class="checkout-product-quantity">
-                            <p class="checkout-product-price">X{{}}</p>
+                            <p class="checkout-product-price">x{{ product.quantity }}</p>
                         </div>
                     </div>
                 </div>
+                <div class="checkout-info-line">
+                    <p class="checkout-product-price">TOTAL</p>
+                    <p class="checkout-product-title">{{ currency.format(this.cartTotal) }}</p>
+                </div>
+                <div class="checkout-info-line">
+                    <p class="checkout-product-price">SHIPPING</p>
+                    <p class="checkout-product-title">{{ this.cartTotal < 2000 ? currency.format(this.shipping) :
+                        currency.format(0) }}</p>
+                </div>
+                <div class="checkout-info-line">
+                    <p class="checkout-product-price">TOTAL</p>
+                    <p style="color: #D87D4A;" class="checkout-product-title">{{ currency.format(this.shipping +
+                        this.cartTotal) }}</p>
+                </div>
+                <ButtonComponent text="Finalizar pedido" :action="() => showConclusion = true" class="checkout-buy-button" />
             </div>
-
         </div>
+
+        <!-- Modal -->
+        <ConclusionModal v-if="showConclusion" :close="close" :products="productsList" :total="this.shipping + this.cartTotal"/>
     </div>
 </template>
 
 <script>
 import InputComponent from '@/components/InputComponent.vue';
+import ButtonComponent from '@/components/ButtonComponent.vue';
+import ConclusionModal from '@/components/ConclusionModal.vue';
 
 export default {
     name: 'CheckoutView',
     components: {
-        InputComponent
+        InputComponent,
+        ButtonComponent,
+        ConclusionModal
     },
     data() {
         return {
@@ -69,6 +90,9 @@ export default {
                 style: 'currency',
                 currency: 'BRL',
             }),
+            cartTotal: undefined,
+            shipping: undefined,
+            showConclusion: false,
             name: '',
             nameMessage: '',
             email: '',
@@ -89,14 +113,6 @@ export default {
         service() {
             return this.$store.state.cartService
         },
-        total() {
-            let total = 0
-            for (let index = 0; index < this.productsList.length; index++) {
-                const element = this.productsList[index];
-                total += element.quantity * element.price
-            }
-            return total
-        }
     },
     watch: {
         name(newValue) { if (newValue) this.nameMessage = '' },
@@ -107,8 +123,10 @@ export default {
         city(newValue) { if (newValue) this.cityMessage = '' },
         country(newValue) { if (newValue) this.countryMessage = '' },
     },
-    created () {
+    created() {
         this.productsList = this.service.getProducts()
+        this.cartTotal = this.service.getTotal()
+        this.shipping = this.service.getShipping()
     },
     methods: {
         returnPage() {
@@ -134,6 +152,10 @@ export default {
             if (!this.city) this.cityMessage = 'Campo obrigatorio'
 
             if (!this.country) this.countryMessage = 'Campo obrigatorio'
+        },
+        close () {
+            this.service.cleanProducts()
+            this.$router.push('/')
         }
     },
 }
@@ -159,14 +181,14 @@ export default {
 .checkout-left-container {
     background-color: white;
     border-radius: 8px;
-    width: 66%;
+    width: 60%;
     padding: 4vh 2vw;
 }
 
 .checkout-rigth-container {
     background-color: white;
     border-radius: 8px;
-    width: 22%;
+    width: 27%;
     padding: 3vh 1.5vw;
 }
 
@@ -187,7 +209,7 @@ export default {
     width: 45%;
 }
 
-.checkout-product-list{
+.checkout-product-list {
     margin-top: 3vh;
     min-height: 10vh;
     max-height: 45vh;
@@ -196,11 +218,13 @@ export default {
     display: flex;
     flex-direction: column;
 }
-.checkout-product{
+
+.checkout-product {
     display: flex;
     align-items: center;
 }
-.checkout-product-img-container{
+
+.checkout-product-img-container {
     width: 25%;
     height: 7vh;
     background-color: #F1F1F1;
@@ -209,33 +233,55 @@ export default {
     justify-content: center;
     border-radius: 10px;
 }
-.checkout-product-quantity{
-    width: 20%;
+
+.checkout-product-quantity {
     height: 3vh;
 }
-.checkout-product-info{
+
+.checkout-product-info {
     flex: 1;
     padding-left: 4%;
 }
-.checkout-product-img{
+
+.checkout-product-img {
     max-height: 85%;
 }
-.checkout-product-title{
+
+.checkout-product-title {
     font-weight: bold;
 }
-.checkout-product-price{
+
+.checkout-product-price {
     color: gray;
 }
-.checkout-product-quantity-inputs{
+
+.checkout-product-quantity-inputs {
     color: gray;
     cursor: pointer;
-    -webkit-user-select: none; /* Safari */        
-    -moz-user-select: none; /* Firefox */
-    -ms-user-select: none; /* IE10+/Edge */
-    user-select: none; /* Standard */
+    -webkit-user-select: none;
+    /* Safari */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* IE10+/Edge */
+    user-select: none;
+    /* Standard */
 }
-.checkout-product-quantity-inputs:hover{
+
+.checkout-product-quantity-inputs:hover {
     color: #D87D4A;
+}
+
+.checkout-info-line {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 0.5vh;
+}
+
+.checkout-buy-button {
+    width: 100%;
+    margin-top: 3vh;
 }
 
 
@@ -256,6 +302,16 @@ export default {
     .checkout-rigth-container {
         width: 94%;
     }
+
+    .checkout-product-img-container {
+        width: 15%;
+    }
+
+    .checkout-product-list {
+        min-height: none;
+        max-height: none;
+        margin-bottom: 2vh;
+    }
 }
 
 @media screen and (max-width: 550px) {
@@ -269,6 +325,11 @@ export default {
     }
 
     .checkout-left-container {
+        padding: 4vh 4vw;
+        width: 92%;
+    }
+
+    .checkout-rigth-container {
         padding: 4vh 4vw;
         width: 92%;
     }
