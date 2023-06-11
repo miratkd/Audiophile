@@ -63,6 +63,8 @@ export default {
         removeAll () {
             this.service.cleanProducts()
             this.productsList = []
+            this.$router.push('/')
+            this.close()
         },
         checkout () {
             this.$router.push('/checkout')

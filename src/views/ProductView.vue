@@ -5,7 +5,7 @@
 
         <div class="product-features-container">
             <div class="product-features">
-                <h3>FEATURES</h3>
+                <h3>DESCRIÇÃO</h3>
                 <p class="product-features-text">{{ product.features }}</p>
             </div>
             <div class="product-box">
@@ -28,7 +28,7 @@
             <img :src="product.img3" class="product-images-rigth">
         </div>
 
-        <h3 class="recomendation-title">you may also like</h3>
+        <h3 class="recomendation-title">VOCÊ TAMBEM PODE GOSTAR</h3>
         <div class="recomendation-container">
             <RecomendationCardComponent v-for="recomendation in product.recomentationList" :key="recomendation"
                 :productId="recomendation" />

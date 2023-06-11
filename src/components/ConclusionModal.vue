@@ -2,7 +2,7 @@
     <div class="conclusion-container">
         <div class="conclusion-modal">
             <span class="material-icons-outlined conclusion-icon">done</span>
-            <h3 class="conclusion-title">THANK YOU <br> FOR YOUR ORDER</h3>
+            <h3 class="conclusion-title">OBRIGADO <br> PELO SEU PEDIDO</h3>
             <div class="conclusion-card-container">
                 <div class="conclusion-card-left">
                     <div class="conclusion-product">
@@ -18,7 +18,7 @@
                         </div>
                     </div>
                     <p v-if="products.length > 1" class="conclusion-card-left-other">
-                         and {{ products.length - 1 }} other item(s) 
+                         e mais {{ products.length - 1 }} item(s)
                     </p>
                 </div>
                 <div class="conclusion-card-rigth">

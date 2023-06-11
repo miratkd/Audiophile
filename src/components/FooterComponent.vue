@@ -17,9 +17,9 @@
 
         <div class="footer-text-line">
             <p class="footer-text">
-                Audiophile is an all in one stop to fulfill your audio needs. We're a small team of music lovers and sound
-                specialists who are devoted to helping you get the most out of personal audio. Come and visit our demo
-                facility - we’re open 7 days a week.
+                Audiófilo é uma parada unica para atender às suas necessidades de áudio. Somos uma pequena equipe de amantes da música e
+                especialistas de som que se dedicam a ajudá-lo a tirar o máximo proveito do áudio pessoal. Venha visitar nossa loja de demonstração
+                 - Estamos abertos 7 dias por semana.
             </p>
             <div class="footer-text-icons-container">
                 <img class="footer-icon" src="@/assets/facebookIcon.svg" alt="">

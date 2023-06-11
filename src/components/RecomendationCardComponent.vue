@@ -2,7 +2,7 @@
     <div class="recomendation-card-container">
         <img class="recomendation-card-img" :src="product.mainImg" alt="">
         <h5 class="recomendation-card-name">{{ product.name }}</h5>
-        <ButtonComponent class="recomendation-card-button" text="See Product" :action="clickLink"/>
+        <ButtonComponent class="recomendation-card-button" text="Ver produto" :action="clickLink"/>
     </div>
 </template>
 

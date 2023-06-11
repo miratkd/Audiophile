@@ -5,30 +5,30 @@
 
             <div class="checkout-left-container">
                 <h3>CHECKOUT</h3>
-                <p class="subtitle checkout-subtitle">Billing Details</p>
+                <p class="subtitle checkout-subtitle">Detalhes de Cobrança</p>
                 <div class="checkout-input-line checkout-inputs-margin">
                     <InputComponent :errorMessage="nameMessage" :setValue="value => name = value" placeholder="Alex"
-                        class="checkout-input-half" title="name" />
+                        class="checkout-input-half" title="Nome" />
                     <InputComponent :errorMessage="emailMessage" :setValue="value => email = value"
-                        placeholder="Alex@gmail.com" class="checkout-input-half" title="Email adress" />
+                        placeholder="Alex@gmail.com" class="checkout-input-half" title="Email" />
                 </div>
                 <div class="checkout-input-line checkout-inputs-margin">
                     <InputComponent :errorMessage="phoneMessage" :setValue="value => phone = value"
-                        placeholder="(12)3456-7891" type="tel" class="checkout-input-half" title="Phone Number" />
+                        placeholder="(12)3456-7891" type="tel" class="checkout-input-half" title="Numero de telefone" />
                 </div>
 
-                <p class="subtitle  checkout-subtitle">shipping info</p>
+                <p class="subtitle  checkout-subtitle">Informações de envio</p>
                 <InputComponent :errorMessage="addressMessage" :setValue="value => address = value"
-                    class=" checkout-inputs-margin" placeholder="Rua das palmeiras" title="Address" />
+                    class=" checkout-inputs-margin" placeholder="Rua das palmeiras" title="Endereço" />
                 <div class="checkout-input-line  checkout-inputs-margin">
                     <InputComponent :errorMessage="zipMessage" :setValue="value => zip = value" type="zip"
-                        class="checkout-input-half" title="zip code" placeholder="12 323-230" />
+                        class="checkout-input-half" title="CEP" placeholder="12 323-230" />
                     <InputComponent :errorMessage="cityMessage" :setValue="value => city = value"
-                        class="checkout-input-half" title="city" placeholder="São Paulo" />
+                        class="checkout-input-half" title="Cidade" placeholder="São Paulo" />
                 </div>
                 <div class="checkout-input-line  checkout-inputs-margin">
                     <InputComponent :errorMessage="countryMessage" :setValue="value => country = value"
-                        class="checkout-input-half" title="country" placeholder="Brasil" />
+                        class="checkout-input-half" title="Pais" placeholder="Brasil" />
                 </div>
             </div>
 
@@ -49,11 +49,11 @@
                     </div>
                 </div>
                 <div class="checkout-info-line">
-                    <p class="checkout-product-price">TOTAL</p>
+                    <p class="checkout-product-price">TOTAL DOS PRODUTOS</p>
                     <p class="checkout-product-title">{{ currency.format(this.cartTotal) }}</p>
                 </div>
                 <div class="checkout-info-line">
-                    <p class="checkout-product-price">SHIPPING</p>
+                    <p class="checkout-product-price">FRETE</p>
                     <p class="checkout-product-title">{{ this.cartTotal < 2000 ? currency.format(this.shipping) :
                         currency.format(0) }}</p>
                 </div>
@@ -62,12 +62,13 @@
                     <p style="color: #D87D4A;" class="checkout-product-title">{{ currency.format(this.shipping +
                         this.cartTotal) }}</p>
                 </div>
-                <ButtonComponent text="Finalizar pedido" :action="() => showConclusion = true" class="checkout-buy-button" />
+                <ButtonComponent text="Finalizar pedido" :action="save" class="checkout-buy-button" />
             </div>
         </div>
 
         <!-- Modal -->
-        <ConclusionModal v-if="showConclusion" :close="close" :products="productsList" :total="this.shipping + this.cartTotal"/>
+        <ConclusionModal v-if="showConclusion" :close="close" :products="productsList"
+            :total="this.shipping + this.cartTotal" />
     </div>
 </template>
 
@@ -136,7 +137,7 @@ export default {
             if (!this.name) this.nameMessage = 'Campo obrigatorio'
             else if (this.name.length < 5) this.nameMessage = 'Nome completo'
 
-            const pattern = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.([a-z]+)?$/i
+            const pattern = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
             if (!this.email) this.emailMessage = 'Campo obrigatorio'
             else if (!this.email.match(pattern)) this.emailMessage = 'Insira um email valido'
 
@@ -152,8 +153,11 @@ export default {
             if (!this.city) this.cityMessage = 'Campo obrigatorio'
 
             if (!this.country) this.countryMessage = 'Campo obrigatorio'
+
+            if (!this.nameMessage && !this.emailMessage && !this.phoneMessage && !this.addressMessage 
+            && !this.zipMessage && !this.cityMessage && !this.countryMessage) this.showConclusion = true
         },
-        close () {
+        close() {
             this.service.cleanProducts()
             this.$router.push('/')
         }
@@ -333,4 +337,5 @@ export default {
         padding: 4vh 4vw;
         width: 92%;
     }
-}</style>
+}
+</style>

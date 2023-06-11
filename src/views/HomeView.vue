@@ -4,8 +4,8 @@
       <div class="home-banner-info">
         <p class="overline" style="color: white;">Novo produto</p>
         <h1 style="color: white;">XX99 Mark II Headphones</h1>
-        <p class="home-banner-text">Experience natural, lifelike audio and exceptional build quality made for the
-          passionate music enthusiast.</p>
+        <p class="home-banner-text">Experimente áudio natural, realista e qualidade de construção excepcional feita para os
+          apaixonados por música.</p>
         <ButtonComponent text="Ver produto" :action="sendProduct1" />
       </div>
       <img class="home-banner-img" src="@/assets/image-hero.jpg" alt="">
@@ -23,8 +23,8 @@
 
         <div class="home-img1-info-container">
           <h1 class="home-img1-info-title">ZX9 SPEAKER</h1>
-          <p class="home-img1-info-text">Upgrade to premium speakers that are phenomenally built to deliver truly
-            remarkable sound.</p>
+          <p class="home-img1-info-text">Atualize para alto-falantes premium que são fenomenalmente construídos para oferecer realmente
+            som notável.</p>
           <ButtonComponent text="Ver produto" type="black" :action="sendProduct4"/>
         </div>
       </div>
